@@ -7,6 +7,7 @@ struct Compatibility {
     size_t numObjects;
     size_t numLabels;
     Eigen::Tensor<double, 4> compatibility;
+    bool save;
     int verbose;
     
     Compatibility(size_t numObjects, size_t numLabels);

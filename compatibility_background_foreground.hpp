@@ -8,5 +8,5 @@ struct CompatibilityBackgroundForeground : Compatibility {
     void calculate();
 };
 
-#endif _COMPATIBILITY_BACKGROUND_FOREGROUND
+#endif// _COMPATIBILITY_BACKGROUND_FOREGROUND
 

@@ -1,5 +1,9 @@
 # Build folder(s)
 build/
+**.xcodeproj/
+
+# Output folder(s)
+out/
 
 # Prerequisites
 *.d
