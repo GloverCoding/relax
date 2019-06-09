@@ -4,7 +4,7 @@ project(RelaxationLabeling)
 
 set(CMAKE_CXX_STANDARD 14)
 
-find_package(eigen3 REQUIRED)
+find_package(Eigen3 REQUIRED)
 include_directories(Eigen3::Eigen)
 
 find_package(OpenCV REQUIRED)
