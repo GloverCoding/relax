@@ -8,6 +8,7 @@ RelaxationLabeling::RelaxationLabeling(const Eigen::Tensor<double, 4>& compatibi
     supportFactor(0.2),
     iteration(0),
     iterationLimit(10),
+    save(true),
     verbose(2)
 {
     numObjects = compatibility.dimension(0);

@@ -21,21 +21,26 @@ void CompatibilityDummy::calculate()
     }
     
     // output files of compatibility figures if desired
-    std::vector<std::vector<std::unique_ptr<std::ofstream> > > outputFiles(numObjects);
+    std::vector<std::vector<std::unique_ptr<std::ofstream> > > compatibilityFiles(numObjects);
     if (save)
     {
+        std::ofstream summaryFile("structure.csv", std::ofstream::out);
+        summaryFile << "num objects,num labels" << std::endl;
+        summaryFile << numObjects << "," << numLabels << std::endl;
+        summaryFile.close();
+
         for (int i = 0; i < numObjects; ++i)
         {
-            outputFiles.reserve(numLabels);
+            compatibilityFiles.reserve(numLabels);
             for (int j = 0; j < numLabels; ++j)
             {
                 std::stringstream fileName;
                 fileName << "compatibility_" << i << "_" << j << ".csv";
-                outputFiles[i].emplace_back(std::make_unique<std::ofstream>());
-                outputFiles[i][j]->open(fileName.str().c_str());
+                compatibilityFiles[i].emplace_back(std::make_unique<std::ofstream>());
+                compatibilityFiles[i][j]->open(fileName.str().c_str());
                 for (int l = 0; l < numLabels; ++l)
                 {
-                    *outputFiles[i][j] << ",label " << l;
+                    *compatibilityFiles[i][j] << ",label " << l;
                 }
             }
         }
@@ -61,7 +66,7 @@ void CompatibilityDummy::calculate()
                 }
                 if (save)
                 {
-                    *outputFiles[i][j] << std::endl << "object " << k;
+                    *compatibilityFiles[i][j] << std::endl << "object " << k;
                 }
                 for (size_t l = 0; l < numLabels; ++l)
                 {
@@ -80,11 +85,11 @@ void CompatibilityDummy::calculate()
                     }
                     if (save)
                     {
-                        *outputFiles[i][j] << "," << compatibility(i,j,k,l);
+                        *compatibilityFiles[i][j] << "," << compatibility(i,j,k,l);
                     }
                 }
             }
-            outputFiles[i][j]->close();
+            compatibilityFiles[i][j]->close();
         }
     }
 }
